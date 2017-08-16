@@ -1,0 +1,8 @@
+prefix=/home/jabez/Projects/Debbie/devel
+
+Name: xbox_teleop
+Description: Description of xbox_teleop
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/jabez/Projects/Debbie/devel/lib 
+Requires: 
