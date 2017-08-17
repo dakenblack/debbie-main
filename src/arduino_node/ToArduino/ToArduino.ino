@@ -56,8 +56,8 @@ void loop()
 			Serial.print("a");
 			return;
 		}
-		left = _ceil(left,MAX_VAL);
-    right = _ceil(right,MAX_VAL);
+		left = map(left,-115,115,-40,40);
+   right = map(right,-115,115,-40,40);
 		left_move(left);
 		right_move(right);
     Serial.println("b");
@@ -68,10 +68,10 @@ void loop()
 void left_move(int a) {
   Serial.print("left ");
   Serial.print(a);
-	//ST.motor(LEFT_MOTOR,a);
+	ST.motor(LEFT_MOTOR,a);
 }
 void right_move(int a) {
   Serial.print(" right ");
   Serial.println(a);
-	//ST.motor(RIGHT_MOTOR,a);
+	ST.motor(RIGHT_MOTOR,a);
 }

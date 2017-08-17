@@ -47,8 +47,8 @@ int main(int argc, char ** argv) {
     int exit = 0;
     while(!exit && ros::ok()) {
         int val_x, val_y;
-        val_x = SDL_JoystickGetAxis(joy,X_AXIS);
-        val_y = -SDL_JoystickGetAxis(joy,Y_AXIS);
+        val_x = -SDL_JoystickGetAxis(joy,X_AXIS);
+        val_y = SDL_JoystickGetAxis(joy,Y_AXIS);
 
         val_x = std::abs(val_x) > DEADZONE_X ? val_x : 0;
         val_y = std::abs(val_y) > DEADZONE_Y ? val_y : 0;
