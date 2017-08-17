@@ -12,7 +12,8 @@ Here lies the code for CREATE's unmanned ground vehicle called Dabbie Debbie
 * make everything by running `catkin_make` in the root directory (where this README is located)
 * connect xbox and arduino
 * make sure the toArduino sketch is uploaded to the arduino
-* run xbox_teleop and then arduino_node
+* run roscore, xbox_teleop and then arduino_node (all in seperate terminals)
+    * `roscore`
     * `rosrun xbox_teleop xbox_teleop`
     * `rosrun arduino_node arduino`
 
