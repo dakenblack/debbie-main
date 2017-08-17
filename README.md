@@ -13,7 +13,7 @@ Here lies the code for CREATE's unmanned ground vehicle called Dabbie Debbie
 * connect xbox and arduino
 * make sure the toArduino sketch is uploaded to the arduino
 * run xbox_teleop and then arduino_node
-    `rosrun xbox_teleop xbox_teleop`
-    `rosrun arduino_node arduino`
+    * `rosrun xbox_teleop xbox_teleop`
+    * `rosrun arduino_node arduino`
 
 ## That is all
