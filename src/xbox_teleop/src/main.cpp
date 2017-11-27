@@ -50,7 +50,7 @@ int main(int argc, char ** argv) {
     joy = SDL_JoystickOpen(0);
 
     int exit = 0;
-    int dir_x, dir_y, pow_x, pow_y;
+    int dir_x, dir_y, power, brake;
     // length, x component and y component of dir unit vector
     double dir_l, dir_ux, dir_uy;
     while(!exit && ros::ok()) {
@@ -74,13 +74,13 @@ int main(int argc, char ** argv) {
 
 #ifdef DEBUG_OUT
         std::stringstream ss;
-        ss << "[x=" << val_x << ", y=" << val_y << "]";
+        ss << "[x=" << dir_x << ", y=" << dir_y << "]";
         ROS_INFO("%s",ss.str().c_str());
 #endif
 
         geometry_msgs::Twist msg;
-        msg.linear.x = val_x;
-        msg.linear.y = val_y;
+        msg.linear.x = dir_x;
+        msg.linear.y = dir_y;
 
         vel_pub.publish(msg);
 

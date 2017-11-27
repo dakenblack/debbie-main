@@ -1,0 +1,10 @@
+<launch>
+    <group ns="ardiono">
+        <node pkg="arduino_node" name="arduino_node" type="arduino_node" />
+    </group>
+
+    <group ns="xbox">
+        <node pkg="xbox_teleop" name="xbox_teleop" type="xbox_teleop" />
+    </group>
+
+</launch>
