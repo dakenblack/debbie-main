@@ -1,8 +1,8 @@
-prefix=/home/jabez/Projects/Debbie/devel
+prefix=/home/randytjang/Dropbox/School/Used/[extracurriculars]/Debbie/devel
 
 Name: arduino_node
 Description: Description of arduino_node
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/jabez/Projects/Debbie/devel/lib 
+Libs: -L/home/randytjang/Dropbox/School/Used/[extracurriculars]/Debbie/devel/lib 
 Requires: 

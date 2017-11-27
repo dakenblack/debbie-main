@@ -35,26 +35,40 @@ int main(int argc, char ** argv) {
 
     ros::Rate pub_rate(15);
 
-    if(SDL_NumJoysticks() < 1 ) {
-        std::cout << "No Joystick connected, Exiting...\n";
+    if(SDL_NumJoysticks() < 2 ) {
+        std::cout << "No Joysticks connected, Exiting...\n";
         SDL_Quit();
         return -1;
     }
 
-    SDL_Joystick *joy;
-    joy = SDL_JoystickOpen(0);
+    // Declares and initiates two joysticks, assumes 0 is left 1 is right
+    SDL_Joystick *dir;
+    SDL_Joystick *pow;
+    dir = SDL_JoystickOpen(0);
+    pow = SDL_JoystickOpen(1);
 
     int exit = 0;
     while(!exit && ros::ok()) {
-        int val_x, val_y;
-        val_x = -SDL_JoystickGetAxis(joy,X_AXIS);
-        val_y = SDL_JoystickGetAxis(joy,Y_AXIS);
+        int dir_x, dir_y, pow_x, pow_y;
+        // length, x component and y component of dir unit vector
+        double dir_l, dir_ux, dir_uy;
+        // Gets the direction vectors and converts them to unit length
+        dir_x = -SDL_JoystickGetAxis(dir,X_AXIS);
+        dir_y = SDL_JoystickGetAxis(dir,Y_AXIS);
+        dir_x = std::abs(dir_x) > DEADZONE_X ? dir_x : 0;
+        dir_y = std::abs(dir_y) > DEADZONE_Y ? dir_y : 0;
 
-        val_x = std::abs(val_x) > DEADZONE_X ? val_x : 0;
-        val_y = std::abs(val_y) > DEADZONE_Y ? val_y : 0;
+        dir_l = std::sqrt(std::pow((double)dir_x,2)+std::pow((double)dir_y,2));
+        dir_ux = dir_l != 0 ? (double)dir_x / dir_l : 0;
+        dir_uy = dir_l != 0 ? (double)dir_y / dir_l : 0;
 
-        val_x = map(val_x, -32768, 32767, -100, 100);
-        val_y = map(val_y, -32768, 32767, -100, 100);
+        // Make turn rate (differential between wheels) some function of 
+        // dir_l and the total speed be some function of pow_y
+
+
+
+        dir_x = map(dir_x, -32768, 32767, -100, 100);
+        dir_y = map(dir_y, -32768, 32767, -100, 100);
 
 #ifdef DEBUG_OUT
         std::stringstream ss;
