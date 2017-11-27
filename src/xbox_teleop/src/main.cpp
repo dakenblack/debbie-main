@@ -66,7 +66,8 @@ int main(int argc, char ** argv) {
 
         // Make turn rate (differential between wheels) some function of 
         // dir_l and the total speed be some function of pow_y
-
+        power = SDL_JoystickGetAxis(joy,RTRIG);
+        brake = SDL_JoystickGetAxis(joy,LTRIG);
 
 
         dir_x = map(dir_x, -32768, 32767, -100, 100);
