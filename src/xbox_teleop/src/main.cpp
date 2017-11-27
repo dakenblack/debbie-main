@@ -10,8 +10,12 @@
 #define DEADZONE_X 8000
 #define DEADZONE_Y 8000
 
-#define X_AXIS 0
-#define Y_AXIS 1
+#define LJOY_X 0
+#define LJOY_Y 1
+#define RJOY_X 3
+#define RJOY_Y 4
+#define LTRIG 2
+#define RTRIG 5
 
 //#define DEBUG_OUT
 
@@ -35,26 +39,24 @@ int main(int argc, char ** argv) {
 
     ros::Rate pub_rate(15);
 
-    if(SDL_NumJoysticks() < 2 ) {
-        std::cout << "No Joysticks connected, Exiting...\n";
+    if(SDL_NumJoysticks() < 1 ) {
+        std::cout << "No Joystick connected, Exiting...\n";
         SDL_Quit();
         return -1;
     }
 
-    // Declares and initiates two joysticks, assumes 0 is left 1 is right
-    SDL_Joystick *dir;
-    SDL_Joystick *pow;
-    dir = SDL_JoystickOpen(0);
-    pow = SDL_JoystickOpen(1);
+    // Declares and initiates joystick
+    SDL_Joystick *joy;
+    joy = SDL_JoystickOpen(0);
 
     int exit = 0;
+    int dir_x, dir_y, pow_x, pow_y;
+    // length, x component and y component of dir unit vector
+    double dir_l, dir_ux, dir_uy;
     while(!exit && ros::ok()) {
-        int dir_x, dir_y, pow_x, pow_y;
-        // length, x component and y component of dir unit vector
-        double dir_l, dir_ux, dir_uy;
         // Gets the direction vectors and converts them to unit length
-        dir_x = -SDL_JoystickGetAxis(dir,X_AXIS);
-        dir_y = SDL_JoystickGetAxis(dir,Y_AXIS);
+        dir_x = -SDL_JoystickGetAxis(joy,LJOY_X);
+        dir_y = SDL_JoystickGetAxis(joy,LJOY_Y);
         dir_x = std::abs(dir_x) > DEADZONE_X ? dir_x : 0;
         dir_y = std::abs(dir_y) > DEADZONE_Y ? dir_y : 0;
 
