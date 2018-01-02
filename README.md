@@ -19,4 +19,11 @@ Here lies the code for CREATE's unmanned ground vehicle called Dabbie Debbie
     * `rosrun xbox_teleop xbox_teleop`
     * `rosrun arduino_node arduino`
 
+## To look at
+### Point cloud processing (for LIDAR)
+http://wiki.ros.org/pcl/Tutorials
+
+### Stage (simulator)
+http://wiki.ros.org/stage/Tutorials/SimulatingOneRobot
+
 ## That is all
